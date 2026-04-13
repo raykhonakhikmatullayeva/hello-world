@@ -6,28 +6,26 @@ import (
 	"strings"
 )
 
-func main() {
-	fmt.Println("Number of your card: ")
-	card := flag.String("card", "", "Card number")
-	flag.Parse()
-	if *card == "" {
-		fmt.Println("Error: please provide a card number using -card")
-		return
+func formatAmount(amount string) string {
+	var builder strings.Builder
+	n := len(amount)
+	for i, ch := range amount {
+		builder.WriteRune(ch)
+		if (n-i-1)%3 == 0 && i != n-1 {
+			builder.WriteRune(' ')
+		}
 	}
-	normalized := strings.ReplaceAll(*card, " ", "")
-	normalized = strings.ReplaceAll(normalized, "-", "")
-	if len(normalized) != 16 {
-		fmt.Println("Wrong card number!")
-		return
-	}
-	fmt.Println("Card number: ", normalized[:16])
-	fmt.Printf("Length: %d", len(normalized))
-	masked := normalized[:4] + "********" + normalized[12:]
-	fmt.Println("Card: ", masked)
+	return builder.String()
 }
-func allDigits(s string) bool {
-	for _, ch := range result {
-		if ch < '0' || ch > '9' {
-			fmt.Println("Wrong card number!")}
 
+func main() {
+	senderFlag := flag.String("sender", "", "имя отправителя")
+	amountFlag := flag.String("amount", "", "сумма")
+	flag.Parse()
 
+	sender := strings.ToUpper(*senderFlag)
+	amount := formatAmount(*amountFlag)
+
+	fmt.Printf("\n  %s сум поступили 🎉\n", amount)
+	fmt.Printf("  %s отправил вам деньги\n", sender)
+}
