@@ -14,6 +14,6 @@ func main() {
 	fmt.Printf("Receiver: %s\n", receiver)
 	fmt.Printf("Amount: %d sum\n", commission)
 	fmt.Printf("Commission: %d sum\n", commission)
-	fmt.Printf("Total: %d sum\n", total)
+	fmt.Printf("Total: %d sum\n")
 	fmt.Println("=================")
 }
